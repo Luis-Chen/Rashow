@@ -1,4 +1,6 @@
 <?php
+       ini_set("display_errors","On");
+      date_default_timezone_set("Asia/Taipei");
 
      $link = array(
                                'host' => "localhost",

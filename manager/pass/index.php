@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
   <head>
-    <?php include "../../method/include.html" ?>
+    <!-- bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
   </head>
   <body>
     <div class="jumbotron">
@@ -14,7 +18,7 @@
         <div class="col-md-3">
           <div class="panel panel-default">
             <div class="panel-body">
-                      工具列
+                      <?php require_once "../../method/menu.html"; ?>
             </div>
           </div>
         </div>
@@ -26,10 +30,11 @@
                  include_once("../../method/connect.php");
                  $select =  $connect -> prepare("SELECT * FROM poster WHERE sta_view = 1 AND sta_pass = 1");
                  $select -> execute();
+                 $result = $select -> fetchall(PDO::FETCH_ASSOC) ;
                  ?>
                  <table class="table">
                  <?
-                 foreach (($select -> fetchall(PDO::FETCH_ASSOC)) as $result) {?>
+                 foreach ($result as $result) {?>
                    <tr>
                     <td>編號<td>使用者<td>海報<td>上傳日期<td>結束日期<td>審核
                    <tr>
@@ -42,6 +47,9 @@
                         <a href="setting.php?id=<?echo$result['id']; ?>">播放</a>
                  <?}
                  ?>
+                 <?php if ($result == null): ?>
+                   <h1>目前沒有任何資料</h1>
+                 <?php endif; ?>
                </table>
             </div>
           </div>

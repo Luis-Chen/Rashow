@@ -1,5 +1,5 @@
 <?php
-      ini_set("display_errors","On");
+      
       include("../../method/connect.php");
       $pass = $_POST['pass'];
       $id = $_POST['id'];
@@ -10,5 +10,5 @@
       $update = $connect -> prepare("UPDATE poster SET sta_pass = :pass WHERE id = :id");
       $update -> execute(array(':pass' => $pass,':id' => $id));
 
-        header("location:./index.php");
+      header("location:".$_SERVER["HTTP_REFERER"]);
  ?>

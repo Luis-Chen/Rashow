@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
   <head>
+
     <!-- bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -8,17 +9,19 @@
 
   </head>
   <body>
+    <!-- 活動顯示頁面 -->
     <div class="jumbotron">
       <h1>Hello, world!</h1>
       <p>...</p>
       <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
     </div>
+    <!-- 主體 -->
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-3">
           <div class="panel panel-default">
             <div class="panel-body">
-                    <?php require_once "../../method/menu.html"; ?>
+                      <?php require_once "../../method/menu.html"; ?>
             </div>
           </div>
         </div>
@@ -28,7 +31,7 @@
               <?php
                   ini_set("display_errors", "On");
                  include_once("../../method/connect.php");
-                 $select =  $connect -> prepare("SELECT * FROM poster WHERE sta_view = 0");
+                 $select =  $connect -> prepare("SELECT * FROM member ");
                  $select -> execute();
                  $result = $select -> fetchall(PDO::FETCH_ASSOC) ;
                  ?>
@@ -44,17 +47,14 @@
                      <td><?echo $result['toDay'];?>
                      <td><?echo $result['endDate'];?>
                      <td>
-                        <form name="viewed_yn"  action="./setting.php" method="POST">
-                            <input type="radio" name="pass" value="0">未通過
-                            <input type="radio" name="pass" value="1">已通過
-                            <input type="hidden" name="id" value= "<?php echo $result['id']; ?>">
-                            <input type="submit"  value="送出">
-                          </form>
+                        <a href="setting.php?id=<?echo$result['id']; ?>">刪除</a>
                  <?}
                  ?>
+                 <!-- 沒東西就顯示沒東西 -->
                  <?php if ($result == null): ?>
                    <h1>目前沒有任何資料</h1>
                  <?php endif; ?>
+                 <!--                                         -->
                </table>
             </div>
           </div>

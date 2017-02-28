@@ -1,12 +1,11 @@
 <?php
-  date_default_timezone_set("Asia/Taipei");
-  ini_set("display_errors", "On");
+  require_once("../method/connect.php");
 
   $picture = $_FILES['picture'];
+  $user = $_POST['member'];
   $endDate = $_POST['endDate'];
   $fileName  = $picture['tmp_name'];
-  $toDay = date('Y-m-d');
-
+  $toDay = $_POST['toDay'];
   if($_FILES["picture"]["error"]==0){
       // move_uploaded_file($_FILES["file"]["tmp_name"],
       // iconv("UTF-8", "big5", "../picture/".$_FILES["file"]["name"] ));//防止中文檔名亂碼
@@ -39,21 +38,23 @@
   }else {
       echo"fileErrorCode:".$_FILES["file"]["error"];
   }
-  require_once("../method/connect.php");
+
 
   $insert = $connect -> prepare( "INSERT INTO
                       poster (
                               link,
                               endDate,
-                              toDay
+                              toDay,
+                              user
                             ) VALUES (
-                              ?,?,?
+                              ?,?,?,?
                             )");
   $insert -> execute(
           array(
                        $filelink,
                        $endDate,
-                       $toDay
+                       $toDay,
+                       $user
                      ));
   header("location:".$_SERVER["HTTP_REFERER"]);
  ?>
