@@ -13,10 +13,11 @@
       if ($result['mail']==$mail&&$result['password']==$password) {
 
            $_SESSION['member'] = $result;
+
            if ($_SESSION['member']['level']==0) {
-             header("location:../user?user=1");
+             header("location:../user/?level=0&upload=1");
            }elseif ($_SESSION['member']['level']==1) {
-             header("location:../manager/?member=1");
+             header("location:../manager/?level=1&view=0&pass=0&type=poster");
            }
 
       }elseif ($result['password']!=$password||$result['mail']!=$account) {

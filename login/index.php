@@ -12,20 +12,31 @@
   <body >
     <div class="container">
       <div class="row">
-       <div class="col-md-6 col-md-offset-3" >
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+      <div class="row">
+       <div class="col-md-4 col-md-offset-4" >
          <div class="panel panel-primary">
            <div class="panel-heading">
              <b><h2>Login</h2></b>
            </div>
            <div class="panel-body">
-             <form class="form-signin" role="form" action="logincheck.php" method="post">
+             <form class="form-signin" role="form" action="./logincheck.php" method="post">
                <label for="inputEmail" class="sr-only">Email address</label>
                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""  name="mail">
+               <br>
                <label for="inputPassword" class="sr-only">Password</label>
                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" name="password">
                <br>
                <div class="list-group">
-                 <a href="./sign" class="list-group-item list-group-item-info">還沒註冊嗎?</a>
+                 <?php if ($_GET['sig_suc']==null&&$_GET['error']==null): ?>
+                   <a href="./sign" class="list-group-item list-group-item-info">還沒註冊嗎?</a>
+                 <?php endif; ?>
                  <?php if ($_GET['sig_suc']!=''): ?>
                    <li class="list-group-item list-group-item-success"><?php echo $_GET['sig_suc'] ?>
                  <?php endif; ?>

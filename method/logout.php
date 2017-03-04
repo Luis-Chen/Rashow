@@ -3,5 +3,5 @@
   if ($_SESSION["member"]!= null) {
     unset($_SESSION["member"]);
   }
-  require_once "../login/index.php";
+  header("location:../login/index.php");
  ?>

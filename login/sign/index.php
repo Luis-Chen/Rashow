@@ -9,24 +9,63 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
   </head>
-  <body>
-    <div class="container-fluid">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <form id = 'form' class="" action="./add.php" method="post">
-            <div class="input-group">
-              <input id ="mail" type="mail" name="mail" value="" placeholder="輸入註冊信箱">
-            </div>
-            <div class="input-group">
-              <input  id ="pw"  type="password" name="password" value=""panel placeholder="輸入密碼">
-            </div>
-            <div class="input-group">
-              <input id ="pwc"  type="password" name="pwcheck" value=""panel placeholder="再次輸入密碼">
-            </div>
-            <button type="submit" class = "btn btn-primary " name="button" >註冊</button>
-          </form>
-        </div>
+  <body >
+    <div class="container">
+      <div class="row">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
       </div>
-    </div>
+      <div class="row">
+       <div class="col-md-4 col-md-offset-4" >
+         <div class="panel panel-primary">
+           <div class="panel-heading">
+             <b><h2>Sign</h2></b>
+           </div>
+           <div class="panel-body">
+             <form name = 'form'  class="form-signin" role="form" action="./add.php" method="post">
+                 <input id ="mail" type="email"  class="form-control" name="mail" value="" placeholder="輸入註冊信箱">
+                 <br>
+                 <input  id ="pw"  type="password"  class="form-control"  name="password" value=""panel placeholder="輸入密碼">
+                 <br>
+                 <input id ="pwc"  type="password"  class="form-control" name="pwcheck" value=""panel placeholder="再次輸入密碼">
+                 <br>
+               <?php if ($_GET['same']!=''): ?>
+                 <div class="alert alert-danger" role="alert">
+                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                   <span class="sr-only">Error:</span>
+                    <?php echo $_GET['same'] ?>
+               </div>
+               <?php endif; ?>
+               <br>
+               <div class="">
+                 <button  class="btn btn-lg btn-primary btn-block" name="button"  onclick="check()">註冊</button>
+               </div>
+             </form>
+               <script type="text/javascript">
+                 function check() {
+                   if(form.mail.value =='' ||form.pw.value==''||form.pwc.value==''){
+                     alert("表單填寫不完全");
+                   }else if(form.pw.value!=form.pwc.value){
+                     alert("密碼不相同");
+                   }else {
+                     form.submit();
+                   }
+                 }
+               </script>
+               <!-- jQuery 必須先比bootstrap 引入不然會出錯 -->
+               <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+               <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->
+               <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+               <!-- bootstrap -->
+           </div>
+         </div>
+       </div>
+      </div>
+   </div>
   </body>
 </html>
