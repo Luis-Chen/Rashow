@@ -2,10 +2,12 @@
   require_once("../method/connect.php");
 
   $picture = $_FILES['picture'];
-  $user = $_POST['member'];
+    $fileName  = $picture['tmp_name'];
+
+  $mbid = $_POST['mbid'];
   $endDate = $_POST['endDate'];
-  $fileName  = $picture['tmp_name'];
   $toDay = $_POST['toDay'];
+
   if($_FILES["picture"]["error"]==0){
       // move_uploaded_file($_FILES["file"]["tmp_name"],
       // iconv("UTF-8", "big5", "../picture/".$_FILES["file"]["name"] ));//防止中文檔名亂碼
@@ -28,33 +30,13 @@
       $filelink=$pms['data']['link'];
 
       echo $filelink;
-      // if($url!=""){
-      //     echo "<h2>Uploaded Without Any Problem</h2>";
-      //     echo "<img src='$url'/>";
-      //     echo "你好";
-      //   }else {
-      //     echo "失敗". $pms['data']['error'];
-      //   }
+
   }else {
       echo"fileErrorCode:".$_FILES["file"]["error"];
   }
 
-
-  $insert = $connect -> prepare( "INSERT INTO
-                      poster (
-                              link,
-                              endDate,
-                              toDay,
-                              user
-                            ) VALUES (
-                              ?,?,?,?
-                            )");
-  $insert -> execute(
-          array(
-                       $filelink,
-                       $endDate,
-                       $toDay,
-                       $user
-                     ));
+  $insert = $connect -> prepare( "INSERT INTO  poster (link,mbid,endDate,toDay
+                                                                                              ) VALUES (?,?,?,? )");
+  $insert -> execute(array($filelink, $mbid, $endDate,$toDay));
   header("location:".$_SERVER["HTTP_REFERER"]);
  ?>

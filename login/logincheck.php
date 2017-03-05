@@ -15,7 +15,7 @@
            $_SESSION['member'] = $result;
 
            if ($_SESSION['member']['level']==0) {
-             header("location:../user/?level=0&upload=1");
+             header("location:../user/?level=0&page=upload");
            }elseif ($_SESSION['member']['level']==1) {
              header("location:../manager/?level=1&view=0&pass=0&type=poster");
            }

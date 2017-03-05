@@ -9,10 +9,10 @@
   </ul>
 <?php elseif($_GET['level']==0): ?>
   <ul class="list-group">
-    <li class="list-group-item"><a href="./?upload=1">訊息</a></li>
-    <li class="list-group-item"><a href="./?mes=1">訊息</a></li>
-    <li class="list-group-item"><a href="./?mes=1">留言給管理員</a></li>
-    <li class="list-group-item"><a href="./?his=1">上傳紀錄</a></li>
+    <li class="list-group-item"><a href="./?page=upload&level=0">上傳海報</a></li>
+    <li class="list-group-item"><a href="./?page=mes&level=0">訊息</a></li>
+    <li class="list-group-item"><a href="./?page=mail&level=0">留言給管理員</a></li>
+    <li class="list-group-item"><a href="./?page=his&level=0">歷史紀錄</a></li>
     <li class="list-group-item"><a href="../method/logout.php">登出</a></li>
   </ul>
 <?php endif; ?>
