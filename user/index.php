@@ -34,15 +34,16 @@
         <div class="col-md-6">
           <div class="panel panel-default">
             <div class="panel-body">
+
               <?php if ($_GET['page']=='upload'&&$_GET['level']==0): ?>
-                <form name="add" class="form-horizontal" action="add.php" role="form"  method="post" enctype="multipart/form-data">
+                <form name="add" class="form-horizontal" action="add.php?page=<?echo $_GET['page']?>&level=<?echo $_GET['level']?>" role="form"  method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <span class="input-group-addon">使用者</span>
                     <? echo $_SESSION['member']['mail']?>
                   </div>
                   <div class="form-group">
                     <span class="input-group-addon">上傳圖片</span>
-                    <input type="file" class="form-control"  name="picture" data-toggle="tooltip" title="請上傳圖片">
+                    <input  type="file" class="form-control"  name="picture" data-toggle="tooltip" title="請上傳圖片">
                   </div>
                   <div class="form-group">
                     <span class="input-group-addon">海報結束播放日期</span>
@@ -52,18 +53,8 @@
                     <input type="hidden" name="toDay"value="<? echo date('Y-m-d');?>">
                   </div>
                   <input  type="button"  onclick="check()" class="btn btn-primary" value="送出">
-                  <div class="progress">
-                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%" id="upload_progress">
-                      <span class="sr-only">45% Complete</span>
-                    </div>
-                  </div>
                 </form>
 
-
-                  <!-- 圖片上傳API -->
-                  <link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css" rel="stylesheet">
-                  <script src="http://hayageek.github.io/jQuery-Upload-File/4.0.10/jquery.uploadfile.min.js">
-                  </script>
                   <!-- 上傳判斷 -->
                   <script type="text/javascript">
                     function check() {
@@ -75,7 +66,6 @@
 
                       if (endDate == '') {
                               alert(endDate + "請輸入日期");
-
                             }else if ( endDate < toDay) {
                               alert("[輸入錯誤]日期:" + endDate + " ，結束日期早於今日");
                             }else if (picture  == '') {
@@ -85,20 +75,16 @@
                             }else {
                               add.submit();
                             }
-                          }
+                      }
                   </script>
                   <!-- 進度條 -->
-                  <script type="text/javascript">
-                  
-
-                  </script>
+              <!-- 觀看上傳紀錄 -->
               <?php elseif ($_GET['page']=='his'&&$_GET['level']==0):  ?>
                 <?php
                   require_once "../method/connect.php";
                   $select =  $connect -> prepare("SELECT * FROM poster WHERE mbid = :mbid");
                   $select -> execute(array(':mbid' => $_SESSION['member']['id']));
                   $result= $select -> fetchall(PDO::FETCH_ASSOC);
-
                 ?>
              <table class="table">
                <?php foreach($result as $result):?>
@@ -122,11 +108,51 @@
                     <?php endif; ?>
                  <?php endforeach; ?>
                </table>
+               <!-- 發送訊息 -->
               <?php elseif ($_GET['page']=='mail'&&$_GET['level']==0):  ?>
-                <form class="" action="index.html" method="post">
+                <form name="mail" class="form-horizontal" action="add.php?page=<?echo $_GET['page']?>&level=<?echo $_GET['level']?>" role="form"  method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <span class="input-group-addon">使用者</span>
+                    <? echo $_SESSION['member']['mail']?>
+                  </div>
+                  <div class="form-group">
+                    <span class="input-group-addon">標題</span>
+                    <input  type="text" class="form-control"  name="title" data-toggle="tooltip" title="輸入標題">
+                  </div>
+                  <div class="form-group">
+                    <span class="input-group-addon">內容</span>
+                    <textarea class="form-control" rows="3" name="text"></textarea>
+                  </div>
+                  <input type="hidden" name="mbid" value="<?echo $_SESSION['member']['id'];?>">
+                  <input type="hidden" name="mail" value="<?echo $_SESSION['member']['mail'];?>">
+                  <input type="hidden" name="toDay"value="<? echo date('Y-m-d');?>">
 
+                  <input  type="submit"  onclick="" class="btn btn-primary" value="送出">
                 </form>
+                <!-- 檢查訊息 -->
+              <?php elseif ($_GET['page']=='meg'&&$_GET['level']==0): ?>
+                <?php
+                  require_once "../method/connect.php";
+                  $select =  $connect -> prepare("SELECT * FROM message WHERE mbid = :mbid");
+                  $select -> execute(array(':mbid' => $_SESSION['member']['id']));
+                  $meg= $select -> fetchall(PDO::FETCH_ASSOC);
+                ?>
+             <table class="table">
+               <?php foreach($meg as $meg):?>
+               <tr>
+                 <td>編號<td>標題<td>內容<td>日期
+               <tr>
+                  <td><?echo  $meg['id'];?>
+                  <td><?echo  $meg['title'] ?>
+                  <td><?echo  $meg['text'];?>
+                  <td><?echo  $meg['date'];?>
+               <?php endforeach; ?>
+               </table>
+               <?php else: ?>
+                   <h1>目前沒有任何資料</h1>
               <?php endif; ?>
+
+
                 <!-- jQuery 必須先比bootstrap 引入不然會出錯 -->
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
                 <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->

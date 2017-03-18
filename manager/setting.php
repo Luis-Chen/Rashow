@@ -10,7 +10,7 @@
       $pass = $_GET['pass'];
 
       //未審核頁面送過來的SQL指令
-      if ($view == 0 && $pass == 0) {
+      if ($view=='upload'&&$pass==0) {
           $update = $connect -> prepare("UPDATE poster SET sta_view = 1 , sta_pass = ?  WHERE id = ?");
           $update -> execute(array($setPass,$id));
       }elseif ($view == true && $pass == true) {//已通過頁面指令

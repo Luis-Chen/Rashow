@@ -4,12 +4,13 @@
 
      $link = array(
                                'host' => "localhost",
+                               'port' => "3306",
                                'account' => "root",
                                'password' => "root",
                                'dbname' => "rashow"
                               );
 
-     $dbconnect =  'mysql:host='.$link['host'].';dbname='.$link['dbname'];
+      $dbconnect =  'mysql:host='.$link['host'].';port='.$link['port'].';dbname='.$link['dbname'];
 
       // try 判斷是否連上 否:顯示訊息
       try {
