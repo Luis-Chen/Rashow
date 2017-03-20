@@ -66,17 +66,16 @@
                         <td>
                           <!-- 未通過 -->
                         <?php if ($view == false && $pass == false ): ?>
-                        <form name="viewed_yn"  action="setting.php?id=<?echo$result['id']?>&view=<?echo$view?>&pass=<?echo$pass?>" method="POST">
-                            <input type="radio" name="setPass" value="0">未通過
-                            <input type="radio" name="setPass" value="1">已通過
-                            <input type="submit"  value="送出">
-                          </form>
+                            <a href="setting.php?id=<?echo$result['id'];?>&view=<?echo $view;?>&pass=<?echo $pass;?>&setPass=0" onclick="傳訊息給使用者">未通過</a>
+                            <a href="setting.php?id=<?echo$result['id'];?>&view=<?echo $view;?>&pass=<?echo $pass;?>&setPass=1" onclick="傳訊息給使用者">通過</a>
                          <!-- 可播放 -->
-                       <?php elseif ($view == true&&$pass == true): ?>
+                       <?php elseif ($view == true && $pass == true): ?>
                           <a href="setting.php?id=<?echo$result['id'];?>&view=<?echo $view;?>&pass=<?echo $pass;?>" onclick="傳訊息給使用者">播放</a>
+                          <a href="setting.php?id=<?echo$result['id'];?>&view=<?echo $view;?>&pass=<?echo $pass;?>&setPass=0" onclick="傳訊息給使用者">未通過</a>
                         <!-- 刪除 -->
-                        <?php elseif ($view == true &&$pass == false): ?>
+                        <?php elseif ($view == true && $pass == false): ?>
                           <a href="setting.php?id=<?echo$result['id'];?>&view=<?echo $view;?>&pass=<?echo $pass;?>">刪除</a>
+                          <a href="setting.php?id=<?echo$result['id'];?>&view=<?echo $view;?>&pass=<?echo $pass;?>&setPass=1" onclick="傳訊息給使用者">通過</a>
                         <?php endif; ?>
                       <?php endforeach; ?>
 
