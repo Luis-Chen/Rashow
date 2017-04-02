@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Mar 05, 2017 at 01:03 PM
+-- Generation Time: Apr 02, 2017 at 12:33 PM
 -- Server version: 5.5.49-log
 -- PHP Version: 5.6.24
 
@@ -30,17 +30,20 @@ CREATE TABLE IF NOT EXISTS `member` (
   `id` int(11) NOT NULL,
   `mail` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `google_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `level` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4723 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4731 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`id`, `mail`, `password`, `date`, `level`) VALUES
-(4718, 'asd123456@yahoo.com', '7815696ecbf1c96e6894b779456d330e', '2017-03-04', 0),
-(4722, 'leo5916267@gmail.com', '7815696ecbf1c96e6894b779456d330e', '2017-03-04', 1);
+INSERT INTO `member` (`id`, `mail`, `password`, `google_id`, `date`, `level`) VALUES
+(4718, 'asd123456@yahoo.com', '7815696ecbf1c96e6894b779456d330e', '', '2017-03-04', 0),
+(4724, 'f74373021@mailst.cjcu.edu.tw', '', '113594487411988309841', '2017-03-26', 0),
+(4729, 'leo5916267@gmail.com', '', '115931849194481467797', '2017-03-26', 0),
+(4730, 'root@Rashow.com', '63a9f0ea7bb98050796b649e85481845', '', '2017-03-27', 1);
 
 -- --------------------------------------------------------
 
@@ -53,8 +56,15 @@ CREATE TABLE IF NOT EXISTS `message` (
   `mbid` int(11) NOT NULL,
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `date` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`id`, `mbid`, `title`, `text`, `date`) VALUES
+(1, 4724, '你好', '訊息測試', '2017-04-01 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -71,15 +81,16 @@ CREATE TABLE IF NOT EXISTS `poster` (
   `sta_view` tinyint(1) NOT NULL COMMENT '看過',
   `sta_pass` tinyint(1) NOT NULL COMMENT '通過',
   `sta_play` int(11) NOT NULL COMMENT '播放'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `poster`
 --
 
 INSERT INTO `poster` (`id`, `mbid`, `link`, `toDay`, `endDate`, `sta_view`, `sta_pass`, `sta_play`) VALUES
-(1, 4718, 'http://i.imgur.com/WTT4OsN.png', '2017-03-05', '2017-03-23', 0, 0, 0),
-(3, 4718, 'http://i.imgur.com/PDhOish.png', '2017-03-05', '2017-03-23', 0, 0, 0);
+(19, 4729, 'http://i.imgur.com/1TtlnqR.png', '2017-03-27', '2017-03-29', 0, 0, 0),
+(21, 4729, 'http://i.imgur.com/OIAuYhP.jpg', '2017-03-27', '2017-03-30', 0, 0, 0),
+(22, 4718, 'http://i.imgur.com/4MlWlbW.jpg', '2017-04-02', '2017-04-28', 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -96,7 +107,7 @@ ALTER TABLE `member`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `mbid` (`mbid`);
+  ADD KEY `mbid` (`mbid`) USING BTREE;
 
 --
 -- Indexes for table `poster`
@@ -113,17 +124,17 @@ ALTER TABLE `poster`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4723;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4731;
 --
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `poster`
 --
 ALTER TABLE `poster`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '編號',AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '編號',AUTO_INCREMENT=23;
 --
 -- Constraints for dumped tables
 --
