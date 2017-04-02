@@ -2,12 +2,11 @@
   require_once("../method/connect.php");
 
   $page = $_GET['page'];
-  $level = $_GET['level'];
-
-  if ($page=='upload'&&$level==0) {
+  ini_set("max_execution_time", "300");
+  // 檔案過大上傳時間會很久
+  if ($page=='upload') {
     $picture = $_FILES['picture'];
       $fileName  = $picture['tmp_name'];
-
     $mbid = $_POST['mbid'];
     $endDate = $_POST['endDate'];
     $toDay = $_POST['toDay'];
@@ -19,7 +18,7 @@
         $handle = fopen($fileName,"r");
         $data = fread($handle,filesize($fileName));
         $pvars  = array('image' => base64_encode($data));
-        $timeout = 30;
+        $timeout = 300;
         $curl = curl_init();
         curl_setopt($curl,CURLOPT_URL,'https://api.imgur.com/3/image.json');
         curl_setopt($curl,CURLOPT_TIMEOUT,$timeout);//讀取時間30秒為上限
@@ -32,80 +31,73 @@
         curl_close ($curl);
         $pms = json_decode($out,true);
         $filelink=$pms['data']['link'];
-
         echo $filelink;
+        if ($filelink!=null) {
+          $insert = $connect -> prepare( "INSERT INTO  poster (link,mbid,endDate,toDay
+                                                                                                      ) VALUES (?,?,?,? )");
+          $insert -> execute(array($filelink, $mbid, $endDate,$toDay));
+        }
 
-    }else {
-        echo"fileErrorCode:".$_FILES["picture"]["error"];
+      }else {
+          echo"fileErrorCode:".$_FILES["picture"]["error"];
+      }
+      header("location:".$_SERVER["HTTP_REFERER"]);
+    }elseif($page=='mail') {
+      $userInfo = array('title'   => $_POST['title'],
+                                          'text'    => $_POST['text'],
+                                          'mbid' =>$_POST['mbid'],
+                                          'mail'   =>$_POST['mail'],
+                                          'toDay' => $_POST['toDay']
+                              );
+      require_once('../method/phpmailer/PHPMailerAutoload.php');
+
+        $mail= new PHPMailer(); //建立新物件
+        $mail->IsSMTP(); //設定使用SMTP方式寄信
+        $mail->SMTPAuth = true; //設定SMTP需要驗證
+        $mail->SMTPSecure = "ssl"; // Gmail的SMTP主機需要使用SSL連線
+        $mail->Host = "smtp.gmail.com"; //Gamil的SMTP主機
+        $mail->Port = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
+        $mail->CharSet = "utf-8"; //郵件編碼
+        $mail->Username ="leo5916267@gmail.com"; //Gamil帳號
+        $mail->Password = "ji32k7Gmail"; //Gmail密碼
+        $mail->From = $userInfo['mail']; //寄件者信箱
+        $mail->FromName = "[Rashow使用者]".$userInfo['mail']; //寄件者姓名
+        $mail->Subject ="[Rashow使用者發信]".$userInfo['title']; //郵件標題
+        $mail->Body ="
+        <table border =1>
+          <tr>
+            <td>寄件者
+            <td>".$userInfo['mail']."
+          </tr>
+          <tr>
+            <td>標題
+            <td>".$userInfo['title']."
+          </tr>
+          <tr>
+            <td>內容
+            <td>".$userInfo['text']."
+          </tr>
+          <tr>
+            <td>日期
+            <td>".$userInfo['toDay']."
+          </tr>
+        </table>";//郵件內容
+        $mail->IsHTML(true); //郵件內容為html
+        $mail->AddAddress("leo5916267@gmail.com"); //收件者郵件及名稱
+        $mail->AddBCC(" "); //設定 密件副本收件者
+
+        if(!$mail->Send()){
+
+          echo "Error: " . $mail->ErrorInfo;
+
+        }else{
+          $insert = $connect -> prepare("INSERT INTO message (mbid,title,text,date)
+                                                                          VALUES(?,?,?,?)");
+          $insert -> execute(array($userInfo['mbid'],$userInfo['title'],$userInfo['text'],$userInfo['toDay']));
+          echo "<b>發信成功!!</b>";
+
+        }
+
     }
-
-    $insert = $connect -> prepare( "INSERT INTO  poster (link,mbid,endDate,toDay
-                                                                                                ) VALUES (?,?,?,? )");
-    $insert -> execute(array($filelink, $mbid, $endDate,$toDay));
-  }elseif ($page=='mail'&&$level==0) {
-
-    $mbid =  $_POST['mbid'];
-    $mail = $_POST['mail'];
-    $title = $_POST['title'];
-    $text= $_POST['text'];
-    $date = $_POST['toDay'];
-
-    // 寄信給管理者
-    require("../phpMailer/class.phpmailer.php");
-    $mail = new PHPMailer();
-    $mail->IsSMTP();
-    $mail->SMTPAuth = true; // turn on SMTP authentication
-    //這幾行是必須的
-
-    $mail->Username = "XXX@gmail.com";
-    $mail->Password = "*****";
-    //這邊是你的gmail帳號和密碼
-
-    $mail->FromName = "XXX";
-// 寄件者名稱(你自己要顯示的名稱)
-  $webmaster_email = "XXX@gmail.com";
-  //回覆信件至此信箱
-
-
-  $email="XXX@XXX.XXX";
-  // 收件者信箱
-  $name="XXX";
-  // 收件者的名稱or暱稱
-  $mail->From = $webmaster_email;
-
-
-  $mail->AddAddress($email,$name);
-  $mail->AddReplyTo($webmaster_email,"Squall.f");
-  //這不用改
-
-  $mail->WordWrap = 50;
-  //每50行斷一次行
-
-  //$mail->AddAttachment("/XXX.rar");
-  // 附加檔案可以用這種語法(記得把上一行的//去掉)
-
-  $mail->IsHTML(true); // send as HTML
-
-  $mail->Subject = "信件標題";
-  // 信件標題
-  $mail->Body = "信件內容";
-  //信件內容(html版，就是可以有html標籤的如粗體、斜體之類)
-  $mail->AltBody = "信件內容";
-  //信件內容(純文字版)
-
-  if(!$mail->Send()){
-    echo "寄信發生錯誤：" . $mail->ErrorInfo;
-    //如果有錯誤會印出原因
-  }
-  else{
-    echo "寄信成功";
-  }
-
-    // 將訊息存進資料庫
-    $insert = $connect -> prepare("INSERT INTO message (mbid,title,text,date)
-                                    VALUES(?,?,?,?)");
-    $insert -> execute(array($mbid,$title,$text,$date));
-  }
-
-  header("location:".$_SERVER["HTTP_REFERER"]);
+    header("location:".$_SERVER["HTTP_REFERER"]);
  ?>

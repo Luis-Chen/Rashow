@@ -1,5 +1,4 @@
 <?php
-
       include("../method/connect.php");
       //審核
       $setPass = $_GET['setPass'];

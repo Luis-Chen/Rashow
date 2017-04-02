@@ -1,4 +1,3 @@
-<?php  ini_set("display_errors","On"); ?>
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
   <head>
@@ -9,7 +8,7 @@
 
   </head>
   <body>
-
+    <!-- 活動框 -->
     <div class="jumbotron">
       <h1>Hello, world!</h1>
       <p>...</p>
@@ -18,30 +17,31 @@
 
     <div class="container-fluid">
       <div class="row">
-
+        <!-- 目錄 -->
         <div class="col-md-3">
-          <div class="panel panel-default">
-            <div class="panel-body">
-                    <?php require_once "../method/menu.php"; ?>
-            </div>
-          </div>
+            <?php require_once "../method/menu.php"; ?>
         </div>
-
+        <!-- 主內容 -->
         <div class="col-md-9">
           <div class="panel panel-default">
             <div class="panel-body">
               <?php
                  include_once("../method/connect.php");?>
-
                 <!-- // 海報 -->
                 <?php if ($_GET['type']=='poster'): ?>
                 <?
-                    $view = $_GET['view'];
-                    $pass = $_GET['pass'];
-
-                    $select =  $connect -> prepare("SELECT * FROM poster WHERE sta_view = :v AND sta_pass = :p");
-                    $select -> execute(array(':v' =>  $view,':p' => $pass));
-                    $result = $select -> fetchall(PDO::FETCH_ASSOC) ;
+                    if (!isset($_GET['view'])&&!isset($_GET['pass'])) {
+                      $select =  $connect -> prepare("SELECT * FROM poster");
+                      $select -> execute();
+                    }else {
+                      $view = $_GET['view'];
+                      $pass = $_GET['pass'];
+                      $select =  $connect -> prepare("SELECT * FROM poster WHERE sta_view = :v AND sta_pass = :p");
+                      $select -> execute(array(':v' =>  $view,':p' => $pass));
+                    }
+                      $result = $select -> fetchall(PDO::FETCH_ASSOC) ;
+                      $count = count($result);
+                      $_SESSION['page'] = $count;
                 ?>
                   <table class="table">
                     <?php foreach($result as $result) :?>
@@ -49,7 +49,7 @@
                       <td>編號<td>使用者<td>海報<td>上傳日期<td>結束日期<td>狀態<td>審核
                     <tr>
                        <td><?echo $result['id'];?>
-                       <td><?echo $result['mbid'];?>
+                       <td><a  onclick="MM_open();"><?echo $result['mbid'];?></a>
                        <td><a href="<?echo $result['link'];?>"><img src=" <?echo $result['link'];?>" alt="" width="100px" height="100px"></a>
                        <td><?echo $result['toDay'];?>
                        <td><?echo $result['endDate'];?>
@@ -66,16 +66,15 @@
                         <td>
                           <!-- 未通過 -->
                         <?php if ($view == false && $pass == false ): ?>
-                            <a href="setting.php?id=<?echo$result['id'];?>&view=<?echo $view;?>&pass=<?echo $pass;?>&setPass=0" onclick="傳訊息給使用者">未通過</a>
-                            <a href="setting.php?id=<?echo$result['id'];?>&view=<?echo $view;?>&pass=<?echo $pass;?>&setPass=1" onclick="傳訊息給使用者">通過</a>
+                            <a href="setting.php?id=<?echo$result['id'];?>&view=0&pass=0&setPass=0" onclick="傳訊息給使用者">未通過</a>
+                            <a href="setting.php?id=<?echo$result['id'];?>&view=0&pass=0&setPass=1" onclick="傳訊息給使用者">通過</a>
                          <!-- 可播放 -->
                        <?php elseif ($view == true && $pass == true): ?>
-                          <a href="setting.php?id=<?echo$result['id'];?>&view=<?echo $view;?>&pass=<?echo $pass;?>" onclick="傳訊息給使用者">播放</a>
-                          <a href="setting.php?id=<?echo$result['id'];?>&view=<?echo $view;?>&pass=<?echo $pass;?>&setPass=0" onclick="傳訊息給使用者">未通過</a>
+                          <a href="setting.php?id=<?echo$result['id'];?>&view=1&pass=1" onclick="傳訊息給使用者">播放</a>
+                          <a href="setting.php?id=<?echo$result['id'];?>&view=1&pass=1>&setPass=0" onclick="MM_open()">未通過</a>
                         <!-- 刪除 -->
                         <?php elseif ($view == true && $pass == false): ?>
-                          <a href="setting.php?id=<?echo$result['id'];?>&view=<?echo $view;?>&pass=<?echo $pass;?>">刪除</a>
-                          <a href="setting.php?id=<?echo$result['id'];?>&view=<?echo $view;?>&pass=<?echo $pass;?>&setPass=1" onclick="傳訊息給使用者">通過</a>
+                          <a href="setting.php?id=<?echo$result['id'];?>&view=1&pass=0&setPass=1" onclick="MM_open()">通過</a>
                         <?php endif; ?>
                       <?php endforeach; ?>
 
@@ -111,5 +110,16 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+    function MM_open() {
+            window.open(' ./mail/?mbid=<?echo $result['mbid']; ?>&posid=<?echo $result['id']; ?>', 'SendEmail', config='height=450,width=500,location=no,resizable=no,scrollbars=no');
+    }
+
+    </script>
+    <!-- jQuery 必須先比bootstrap 引入不然會出錯 -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <!-- bootstrap -->
   </body>
 </html>

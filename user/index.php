@@ -130,7 +130,7 @@
                   <input  type="submit"  onclick="" class="btn btn-primary" value="送出">
                 </form>
                 <!-- 檢查訊息 -->
-              <?php elseif ($_GET['page']=='meg'&&$_GET['level']==0): ?>
+              <?php elseif ($_GET['page']=='mes'&&$_GET['level']==0): ?>
                 <?php
                   require_once "../method/connect.php";
                   $select =  $connect -> prepare("SELECT * FROM message WHERE mbid = :mbid");
@@ -140,9 +140,8 @@
              <table class="table">
                <?php foreach($meg as $meg):?>
                <tr>
-                 <td>編號<td>標題<td>內容<td>日期
+                 <td>標題<td>內容<td>日期
                <tr>
-                  <td><?echo  $meg['id'];?>
                   <td><?echo  $meg['title'] ?>
                   <td><?echo  $meg['text'];?>
                   <td><?echo  $meg['date'];?>
