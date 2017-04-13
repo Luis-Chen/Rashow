@@ -20,10 +20,7 @@ require_once "google_api_auth.php";
 
       $_SESSION['member'] = $gginfo;
       var_dump($_SESSION['member']);
-       header("location:../user/?level=0&page=upload");
+       header("location:../user/?level=0&type=upload");
 
   }
-
-
-
 ?>

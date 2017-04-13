@@ -10,62 +10,73 @@
 
   </head>
   <body >
-    <div class="container">
-      <div class="row">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-      </div>
-      <div class="row">
-       <div class="col-md-4 col-md-offset-4" >
-         <div class="panel panel-primary">
-           <div class="panel-heading">
-             <b><h2>Login</h2></b>
-           </div>
-           <div class="panel-body">
-             <form class="form-signin" role="form" action="./logincheck.php" method="post">
-               <!-- 信箱 -->
-               <label for="inputEmail" class="sr-only">Email address</label>
-               <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""  name="mail">
-               <br>
-               <!-- 密碼 -->
-               <label for="inputPassword" class="sr-only">Password</label>
-               <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" name="password">
-               <br>
+    <div class="container-fluid">
+    	<div class="row">
+    		<div class="col-md-12">
+          <br>
+          <img src="../img/LOGO.png" alt=""  width="100%" height="auto">
+          <br>
+          <br>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <form class="form-horizontal" role="form" action="logincheck.php" method="post">
+                <div class="form-group">
 
+                  <label for="inputEmail3" class="col-sm-2 control-label">
+                    Email
+                  </label>
+                  <div class="col-sm-6">
+                    <input type="email" name="mail"class="form-control" id="inputEmail3" />
+                  </div>
+                </div>
+                <div class="form-group">
 
-               <!-- 狀態欄 -->
-               <div class="list-group">
-                 <?php if ($_GET['sig_suc']==null&&$_GET['error']==null): ?>
-                   <a href="./sign" class="list-group-item list-group-item-info">還沒註冊嗎?</a>
+                  <label for="inputPassword3" class="col-sm-2 control-label">
+                    Password
+                  </label>
+                  <div class="col-sm-6">
+                    <input type="password" name = "password" class="form-control" id="inputPassword3" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-6">
+                    <div class="checkbox">
+                      <!-- 狀態欄 -->
+                      <div class="list-group">
+                        <a href="./sign" class="list-group-item list-group-item-info" >還沒註冊嗎?</a>
+                        <?php if ($_GET['sig_suc']==null&&$_GET['error']!=null): ?>
+                          <a href="./forget/" class="list-group-item list-group-item-info">忘記密碼</a>
+                        <?php endif; ?>
+                      </div>
+                        <?php if ($_GET['error']!=''): ?>
+                            <div class="alert alert-warning" role="alert"><h2>錯誤!!</h2> <?php echo $_GET['error'] ?></div>
+                        <?php endif; ?>
+                        <?php if ($_GET['sig_suc']!=''): ?>
+                          <div class="alert alert-success" role="alert"><h2>成功</h2> <?php echo $_GET['sig_suc'] ?></div>
+                        <?php endif; ?>
+                        <?php require_once "google_api_auth.php"; ?>
+                        <?php if (isset($authUrl)): ?>
+                            <a href=<?echo $authUrl; ?>>
+                              <img src="https://i.stack.imgur.com/XzoRm.png" height = "50px" width ='auto'>
+                            </a>
+                        <?php endif; ?>
+                    </div>
+                  </div>
+                </div>
 
-                 <?php endif; ?>
-                 <?php if ($_GET['sig_suc']!=''): ?>
-                   <li class="list-group-item list-group-item-success"><?php echo $_GET['sig_suc'] ?>
-                 <?php endif; ?>
-                 <?php if ($_GET['error']!=''): ?>
-                   <li class="list-group-item list-group-item-danger"><?php echo $_GET['error'] ?>
-                   <li><a href="./forget/" class="list-group-item list-group-item-info">忘記密碼</a>
-                 <?php endif; ?>
-               </div>
-                 <?php require_once "google_api_auth.php"; ?>
-                 <?php if (isset($authUrl)): ?>
-                    <a href=<?echo $authUrl; ?>>
-                      <img src="https://i.stack.imgur.com/XzoRm.png" height = "50px" width ='300px'>
-                    </a>
-                 <?php endif; ?>
-                 <br>
-                 <br>
-                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-              </div>
-            </form>
-           </div>
-         </div>
-       </div>
-      </div>
-   </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+
+                    <button type="submit" class="btn btn-default">
+                      Sign in
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+    		</div>
+    	</div>
+    </div>
   </body>
 </html>

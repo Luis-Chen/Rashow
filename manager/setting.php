@@ -1,5 +1,5 @@
 <?php
-      include("../method/connect.php");
+      require_once("../method/connect.php");
       //審核
       $setPass = $_GET['setPass'];
       $id = $_GET['id'];

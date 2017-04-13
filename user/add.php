@@ -1,17 +1,16 @@
 <?php
   require_once("../method/connect.php");
 
-  $page = $_GET['page'];
   ini_set("max_execution_time", "300");
   // 檔案過大上傳時間會很久
-  if ($page=='upload') {
+  if ( $_GET['type'] == 'upload') {
     $picture = $_FILES['picture'];
       $fileName  = $picture['tmp_name'];
     $mbid = $_POST['mbid'];
-    $endDate = $_POST['endDate'];
+    $endDay = $_POST['endDay'];
     $toDay = $_POST['toDay'];
 
-    if($_FILES["picture"]["error"]==0){
+    if($picture["error"]==0){
         // move_uploaded_file($_FILES["picture"]["tmp_name"],
         // iconv("UTF-8", "big5", "./picture/".$_FILES["picture"]["name"] ));//防止中文檔名亂碼
         $client_id = "5b982131a30952e";
@@ -21,11 +20,12 @@
         $timeout = 300;
         $curl = curl_init();
         curl_setopt($curl,CURLOPT_URL,'https://api.imgur.com/3/image.json');
-        curl_setopt($curl,CURLOPT_TIMEOUT,$timeout);//讀取時間30秒為上限
+        curl_setopt($curl,CURLOPT_TIMEOUT,$timeout);//讀取時間300秒為上限
         curl_setopt($curl,CURLOPT_HTTPHEADER,array('Authorization: Client-ID ' . $client_id));
-        curl_setopt($curl,CURLOPT_POST,1);
+        curl_setopt($curl,CURLOPT_POST,true);
         curl_setopt($curl,CURLOPT_SSL_VERIFYPEER, false);//關閉SSL安全
-        curl_setopt($curl,CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl,CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl,CURLOPT_NOPROGRESS,false);
         curl_setopt($curl,CURLOPT_POSTFIELDS, $pvars);
         $out = curl_exec($curl);
         curl_close ($curl);
@@ -33,16 +33,15 @@
         $filelink=$pms['data']['link'];
         echo $filelink;
         if ($filelink!=null) {
-          $insert = $connect -> prepare( "INSERT INTO  poster (link,mbid,endDate,toDay
+          $insert = $connect -> prepare( "INSERT INTO  poster (link,mbid,endDay,toDay
                                                                                                       ) VALUES (?,?,?,? )");
-          $insert -> execute(array($filelink, $mbid, $endDate,$toDay));
+          $insert -> execute(array($filelink, $mbid, $endDay,$toDay));
         }
 
       }else {
           echo"fileErrorCode:".$_FILES["picture"]["error"];
       }
-      header("location:".$_SERVER["HTTP_REFERER"]);
-    }elseif($page=='mail') {
+    }elseif( $_GET['type'] =='mail') {
       $userInfo = array('title'   => $_POST['title'],
                                           'text'    => $_POST['text'],
                                           'mbid' =>$_POST['mbid'],
