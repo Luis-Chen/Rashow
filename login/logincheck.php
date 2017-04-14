@@ -20,7 +20,7 @@
                  var_dump($_SESSION['member']);
                  header("location:../user/?level=0&type==upload");
                }elseif ($_SESSION['member']['level']==1) {
-                 header("location:../manager/?level=1&view=0&pass=0&type=poster&page=1");
+                 header("location:../manager/?level=1&view=0&type=poster&page=1");
                }
 
           }elseif ($result['password']!=$password||$result['mail']!=$account) {
