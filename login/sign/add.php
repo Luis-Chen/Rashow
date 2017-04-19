@@ -1,5 +1,5 @@
 <?php
-     $mail = $_POST['mail'];
+     $mail = $_POST[''];
      $password = $_POST['password'];
      $date = date("Y-m-d");
      require_once "../../method/connect.php";

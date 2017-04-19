@@ -37,8 +37,10 @@
 
               <?php elseif ($_GET['type']=='mail'):  ?><!-- 發送訊息 -->
                 <?php require_once "mail.php" ?>
+
               <?php elseif ($_GET['type']=='mes'): ?><!-- 檢查訊息 -->
                 <?php require_once "message.php" ?>
+                
               <?php endif; ?>
                 <!-- jQuery 必須先比bootstrap 引入不然會出錯 -->
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>

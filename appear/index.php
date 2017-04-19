@@ -7,7 +7,7 @@
   <body>
     <?php
       require_once "../method/connect.php";
-      $select  = $connect -> prepare("SELECT * FROM poster WHERE sta_pass = 1 AND sta_play = 1 AND endDay - toDay < 30  ORDER BY endDay");
+      $select  = $connect -> prepare("SELECT * FROM poster WHERE sta_pass = 1 AND endDay - toDay < 30  ORDER BY endDay");
       $select -> execute();
       $poster = $select -> fetchall(PDO::FETCH_ASSOC);
     ?>

@@ -27,12 +27,14 @@
              <b><h2>Sign</h2></b>
            </div>
            <div class="panel-body">
-             <form name = 'form'  class="form-signin" role="form" action="./add.php" method="post">
+
+             <form id = 'form' name = 'form'  class="form-signin" role="form" action="./add.php" method="post">
+
                  <input id ="mail" type="email"  class="form-control" name="mail" value="" placeholder="輸入註冊信箱">
                  <br>
-                 <input  id ="pw"  type="password"  class="form-control"  name="password" value=""panel placeholder="輸入密碼">
+                 <input id ="pw"  type="password"  class="form-control"  name="password" value="" placeholder="輸入密碼">
                  <br>
-                 <input id ="pwc"  type="password"  class="form-control" name="pwcheck" value=""panel placeholder="再次輸入密碼">
+                 <input id ="pwc"  type="password"  class="form-control" name="pwcheck" value="" placeholder="再次輸入密碼">
                  <br>
                <?php if ($_GET['same']!=''): ?>
                  <div class="alert alert-danger" role="alert">
@@ -42,18 +44,23 @@
                </div>
                <?php endif; ?>
                <br>
-               <div class="">
-                 <button  class="btn btn-lg btn-primary btn-block" name="button"  onclick="check()">註冊</button>
-               </div>
+                 <input type ="button"  class="btn btn-primary"   onclick="check()" value="SIGN">
              </form>
+
                <script type="text/javascript">
                  function check() {
-                   if(form.mail.value =='' ||form.pw.value==''||form.pwc.value==''){
+                   if(document.getElementById('mail').value == '' || document.getElementById('pw').value == '' || document.getElementById('pwc').value == ''){
                      alert("表單填寫不完全");
-                   }else if(form.pw.value!=form.pwc.value){
+                   }else {
+                     var form = true;
+                   }
+                   if(document.getElementById('pw').value  != document.getElementById('pwc').value){
                      alert("密碼不相同");
                    }else {
-                     form.submit();
+                     var pass = true;
+                   }
+                   if (form == true &&  pass == true) {
+                     document.getElementById('form').submit();
                    }
                  }
                </script>

@@ -10,6 +10,9 @@
       if (isset($_GET['pass'])) {
         $pass = $_GET['pass'];
       }
+      if (isset($_GET['play'])) {
+        $play = $_GET['play'];
+      }
       //判斷是哪個頁面的指令
       $view = $_GET['view'];
 
@@ -32,6 +35,15 @@
         }
       //已通過頁面指令
       if ($view == true && $pass == true){
+        if (isset($_POST['play'])) {
+          $play = $_POST['play'];
+          $date = date("Y-m-d");
+          var_dump($play);
+          foreach ($play as $play) {
+            $update = $connect -> prepare("UPDATE poster SET sta_play = 1 ,startplay = :d WHERE id = :id");
+            $update -> execute(array(':id' => $play,':d' => $date ));
+          }
+        }
         if (isset($_POST['checkbox'])) {
           $check = $_POST['checkbox'];
           var_dump($check);
@@ -56,6 +68,16 @@
           }
         }
       }
-      
+      // 播放列表頁面
+      if ($view == true && $play == false) {
+        if (isset($_POST['takeoff'])) {
+          $check = $_POST['takeoff'];
+          var_dump($check);
+          foreach ($check as $check) {
+            $update = $connect -> prepare("UPDATE poster SET sta_play = 0 AND sta_play = 0  WHERE id = :id");
+            $update -> execute(array(':id' => $check ));
+          }
+        }
+      }
       header("location:".$_SERVER["HTTP_REFERER"]);
  ?>

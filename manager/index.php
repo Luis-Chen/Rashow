@@ -42,7 +42,7 @@
                         }
                         if (isset($_GET['play'])&&$_GET['play'] == 1)
                         {
-                          require_once "poster_play.php"; //播放中
+                          require_once "poster_p.php"; //播放中
                         }
                       break;
                     case 'member':

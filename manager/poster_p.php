@@ -1,18 +1,16 @@
 <?php
   require_once "../method/connect.php";
 
-    $select = $connect -> prepare("SELECT * FROM poster WHERE sta_pass = 1 ");
-    // $select -> bindParam(':startPage', intval($startPage));
-    // $select -> bindParam(':per', intval($per));
+    $select = $connect -> prepare("SELECT * FROM poster WHERE sta_play = 1 AND endDay > startplay ORDER BY endDay");
     $select -> execute();
 
     $poster = $select -> fetchall(PDO::FETCH_ASSOC);
 ?>
   <?php if (count($poster)!=0): ?>
-  <form class="" action="setting.php?view=1&pass=1&setPass=0" method="post">
+  <form class="" action="setting.php?view=1&play=1" method="post">
     <table class="table">
       <tr>
-          <td>編號<td>會員編號<td>海報<td>上傳日期<td>結束日期<td>狀態<td>播放<td>未通過
+          <td>編號<td>會員編號<td>海報<td>上傳日期<td>結束日期<td>開始播放時間<td>結束播放時間<td>狀態<td>下架
       <?php foreach ($poster as $poster ): ?>
           <tr>
             <td><?php echo $poster['id'] ?>
@@ -23,15 +21,15 @@
               </a>
             <td><?php echo $poster['toDay']; ?>
             <td><?php echo $poster['endDay']; ?>
-            <td><h4>已通過</h4>
+            <td><?php echo $poster['startplay']; ?>
+            <td>剩<?php echo round((strtotime($poster['endDay'])-strtotime($poster['startplay']))/3600/24)."天"; ?>
+            <td><h4>播放中</h4>
             <td>
-              <input type="checkbox" name="play[]" value="<?echo $poster['id']?>">
-            <td>
-              <input type="checkbox" name="notpass[]" value="<?echo $poster['id']?>">
+                <input type="checkbox" name="takeoff[]" value="<?echo $poster['id']?>">下架
       <?php endforeach; ?>
     </table>
-    <input type="submit" name="" value="送出">
-</form>
+      <input type="submit" name="" value="送出">
+  </form>
   <?php else: ?>
         <h2>目前沒有資料</h2>
   <?php endif; ?>
