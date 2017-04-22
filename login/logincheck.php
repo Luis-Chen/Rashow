@@ -24,10 +24,10 @@
                }
 
           }elseif ($result['password']!=$password||$result['mail']!=$account) {
-                      //header("location:./?error=帳密錯誤");
-                      // echo $_SESSION['member'];
+                      header("location:./?error=帳密錯誤");
+                      echo $_SESSION['member'];
           }elseif ($result['password']!=''||$result['mail']!='') {
-                      //header("location:./?error=輸入不完全");
+                      header("location:./?error=輸入不完全");
           }
     //------------------------預設登入------------------------------------------------
  ?>

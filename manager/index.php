@@ -58,11 +58,6 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-    function MM_open() {
-            window.open(' ./mail/?mbid=<?echo $result['mbid']; ?>&posid=<?echo $result['id']; ?>', 'SendEmail', config='height=450,width=500,location=no,resizable=no,scrollbars=no');
-    }
-    </script>
     <!-- jQuery 必須先比bootstrap 引入不然會出錯 -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->
