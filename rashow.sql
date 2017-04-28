@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Apr 22, 2017 at 04:26 AM
+-- Generation Time: Apr 26, 2017 at 04:46 AM
 -- Server version: 5.5.49-log
 -- PHP Version: 5.6.24
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   `google_id` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `level` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4740 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4731 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `member`
@@ -109,7 +109,7 @@ ALTER TABLE `poster`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4740;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4731;
 --
 -- AUTO_INCREMENT for table `message`
 --

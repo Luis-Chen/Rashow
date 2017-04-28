@@ -7,8 +7,8 @@
 
     <!-- bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
   </head>
   <body>
     <div class="container-fluid">
@@ -40,12 +40,12 @@
 
               <?php elseif ($_GET['type']=='mes'): ?><!-- 檢查訊息 -->
                 <?php require_once "message.php" ?>
-                
+
               <?php endif; ?>
                 <!-- jQuery 必須先比bootstrap 引入不然會出錯 -->
                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
                 <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+                <script src="../bootstrap/js/bootstrap.min.js"></script>
                 <!-- bootstrap -->
             </div>
           </div>
