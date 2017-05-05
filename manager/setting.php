@@ -190,7 +190,7 @@
           $check = $_POST['takeoff'];
           var_dump($check);
           foreach ($check as $check) {
-            $update = $connect -> prepare("UPDATE poster SET sta_play = 0 AND sta_play = 0  WHERE id = :id");
+            $update = $connect -> prepare("UPDATE poster SET sta_play = 0 AND sta_pass = 0  WHERE id = :id");
             $update -> execute(array(':id' => $check ));
           }
         }
