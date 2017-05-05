@@ -23,12 +23,12 @@
        }
 
      }
-    //  if ( $same == false) {
-    //    $insert = $connect -> prepare("INSERT INTO member(mail,password,date)
-    //      VALUES(?,?,?)");
-    //    $insert -> execute(array($mail,md5($password),$date));
-     //
-    //   // header("location:../?sig_suc=註冊成功");
-    //  }
+     if ( $same == false) {
+       $insert = $connect -> prepare("INSERT INTO member(mail,password,date)
+         VALUES(?,?,?)");
+       $insert -> execute(array($mail,md5($password),$date));
+
+      header("location:../?sig_suc=註冊成功");
+     }
 
  ?>

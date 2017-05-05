@@ -1,21 +1,33 @@
-<form name="add" class="form-horizontal" action="add.php?type=<?echo $_GET['type']?>" role="form"  method="post" enctype="multipart/form-data">
-<div class="form-group">
-    <span class="input-group-addon">使用者</span>
-    <? echo $_SESSION['member']['mail']?>
-  </div>
-  <div class="form-group">
-    <span class="input-group-addon">上傳圖片</span>
-    <input  type="file" class="form-control"  name="picture" data-toggle="tooltip" title="請上傳圖片" id="picture">
-  </div>
-  <div class="form-group">
-    <span class="input-group-addon">海報結束播放日期</span>
-    <input type="date" class="form-control" name="endDay" data-toggle="tooltip" title="請輸入日期">
-    <input type="hidden" name="mbid" value="<?echo $_SESSION['member']['id'];?>">
 
-    <input type="hidden" name="toDay"value="<? echo date('Y-m-d');?>">
+<section id="two" class="wrapper style2 special">
+  <div class="inner narrow">
+    <header>
+      <h2>上傳海報</h2>
+    </header>
+    <form id="add" name = "add" class="grid-form" action="add.php?type=<?echo $_GET['type']?>" role="form"  method="post" enctype="multipart/form-data">
+      <div class="form-control narrow ">
+        <label for="name">使用者</label>
+        <? echo $_SESSION['member']['mail']?>
+      </div>
+      <br>
+      <div class="form-control narrow">
+        <label for="picture">上傳圖片</label>
+        <input  type="file"   name="picture"  title="請上傳圖片" id="picture">
+      </div>
+      <br>
+      <div class="form-control narrow">
+        <label for="endDay">海報結束播放日期</label>
+        <input type="date"  name="endDay" title="請輸入日期">
+        <input type="hidden" name="mbid" value="<?echo $_SESSION['member']['id'];?>">
+        <input type="hidden" name="toDay"value="<? echo date('Y-m-d');?>">
+      </div>
+      <ul class="actions">
+        <li><input  type="button"  onclick="check()"  value="送出"></li>
+      </ul>
+    </form>
   </div>
-  <input  type="button"  onclick="check()" class="btn btn-primary" value="送出">
-</form>
+</section>
+
   <!-- 上傳判斷 -->
   <script type="text/javascript">
     function check() {

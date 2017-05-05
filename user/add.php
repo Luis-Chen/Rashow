@@ -82,7 +82,7 @@
           </tr>
         </table>";//郵件內容
         $mail->IsHTML(true); //郵件內容為html
-        $mail->AddAddress("leo5916267@gmail.com"); //收件者郵件及名稱
+        $mail->AddAddress("root@rashow.lionfree.net"); //收件者郵件及名稱
         $mail->AddBCC(" "); //設定 密件副本收件者
 
         if(!$mail->Send()){

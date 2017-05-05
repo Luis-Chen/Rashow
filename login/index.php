@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-
+    <link rel="stylesheet" href="../assets/css/main.css" />
   </head>
   <body >
     <div class="container-fluid">
     	<div class="row">
     		<div class="col-md-12">
-          <br>
-          <img src="../img/LOGO.png" alt=""  width="100%" height="auto">
-          <br>
-          <br>
+          <section id="banner">
+            <h2><strong>Rashow</strong> is a best poster playback system</h2>
+            <p>ENTER Rashow </p>
+          </section>
           <div class="panel panel-default">
             <div class="panel-body">
               <form class="form-horizontal" role="form" action="logincheck.php" method="post">
@@ -78,5 +78,11 @@
     		</div>
     	</div>
     </div>
+    <!-- Scripts -->
+      <script src="../assets/js/jquery.min.js"></script>
+      <script src="../assets/js/skel.min.js"></script>
+      <script src="../assets/js/util.js"></script>
+      <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+      <script src="../assets/js/main.js"></script>
   </body>
 </html>

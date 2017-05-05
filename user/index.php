@@ -7,25 +7,18 @@
 
     <!-- bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
+    <!-- <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css"> -->
+    <link rel="stylesheet" href="../assets/css/main.css" />
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row">
-        <br>
-        <img src="../img/LOGO.png" alt=""  width="100%" height="auto">
-        <br>
-        <br>
-        <div class="col-md-3">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <?php require_once "../method/menu.php" ?>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
+        <!-- Banner -->
+    			<section id="banner">
+    				<h2><strong>Rashow</strong> is a best poster playback system</h2>
+    				<p>Upload your poster </p>
+    			</section>
+          <?php require_once "../method/menu.php" ?>
           <div class="panel panel-default">
             <div class="panel-body">
 
@@ -43,14 +36,18 @@
 
               <?php endif; ?>
                 <!-- jQuery 必須先比bootstrap 引入不然會出錯 -->
-                <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+                <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script> -->
                 <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->
-                <script src="../bootstrap/js/bootstrap.min.js"></script>
+                <!-- <script src="../bootstrap/js/bootstrap.min.js"></script> -->
                 <!-- bootstrap -->
             </div>
           </div>
-        </div>
-      </div>
     </div>
+    <!-- Scripts -->
+      <script src="../assets/js/jquery.min.js"></script>
+      <script src="../assets/js/skel.min.js"></script>
+      <script src="../assets/js/util.js"></script>
+      <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+      <script src="../assets/js/main.js"></script>
   </body>
 </html>
