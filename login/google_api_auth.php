@@ -6,7 +6,7 @@
     // api授權
     $client_id = '437492255329-nk34kuasrda19p5np50ddb78ui0291qs.apps.googleusercontent.com';
     $client_secret = 'Wh-69HSUCfGNnETuRrRaZiWo';
-    $redirect_uri = 'http://localhost:80/Rashow/login/googlecheck.php';
+    $redirect_uri = 'http://rashow-rashow.1d35.starter-us-east-1.openshiftapps.com/login/googlecheck.php';
 
     /************************************************
       Make an API request on behalf of a user. In
