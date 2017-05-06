@@ -3,10 +3,10 @@
       date_default_timezone_set("Asia/Taipei");
 
      $link = array(
-                               'host' => "localhost",
+                               'host' => "10.131.67.80 ",
                                'port' => "3306",
-                               'account' => "root",
-                               'password' => "root",
+                               'account' => "redhat",
+                               'password' => "redhat",
                                'dbname' => "rashow"
                               );
 
