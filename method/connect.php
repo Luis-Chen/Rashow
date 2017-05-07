@@ -3,7 +3,7 @@
       date_default_timezone_set("Asia/Taipei");
 
      $link = array(
-                               'host' => "10.128.61.75",
+                               'host' => "10.130.23.110",
                                'port' => "3306",
                                'account' => "rashow",
                                'password' => "rashow",
