@@ -56,7 +56,7 @@
                         <?php endif; ?>
                         <?php require_once "google_api_auth.php"; ?>
                         <?php if (isset($authUrl)): ?>
-                            <a href= <?echo $authUrl;?>>
+                            <a href= <?php echo $authUrl;?>>
                               <img src="https://i.stack.imgur.com/XzoRm.png" height = "50px" width ='auto'>
                             </a>
                         <?php endif; ?>
