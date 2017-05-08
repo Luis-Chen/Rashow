@@ -3,7 +3,7 @@
     <header>
       <h2>寄信給管理者</h2>
     </header>
-    <form class="grid-form" method="post" action="add.php" id="form">
+    <form class="grid-form" method="post" action="add.php?type=mail" id="form">
       <div class="form-control narrow">
         <label for="email">Email</label>
         <?php echo $_SESSION['member']['mail']?>
