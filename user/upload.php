@@ -7,7 +7,7 @@
     <form id="add" name = "add" class="grid-form" action="add.php?type=<?echo $_GET['type']?>" role="form"  method="post" enctype="multipart/form-data">
       <div class="form-control narrow ">
         <label for="name">使用者</label>
-        <? echo $_SESSION['member']['mail']?>
+        <?php echo $_SESSION['member']['mail']; ?>
       </div>
       <br>
       <div class="form-control narrow">
