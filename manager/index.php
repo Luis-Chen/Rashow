@@ -34,11 +34,8 @@
         <br>
         <br>
         <!-- 目錄 -->
-        <div class="col-md-3">
-            <?php require_once "../method/menu.php"; ?>
-        </div>
+          <?php require_once "../method/menu.php"; ?>
         <!-- 主內容 -->
-        <div class="col-md-9">
           <div class="panel panel-default">
             <div class="panel-body">
               <?php
@@ -74,7 +71,6 @@
                ?>
             </div>
           </div>
-        </div>
       </div>
     </div>
     <!-- jQuery 必須先比bootstrap 引入不然會出錯 -->

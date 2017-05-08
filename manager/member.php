@@ -17,7 +17,7 @@
       <div class="box-header">
         <h3 class="box-title">使用者名單</h3>
         <div class="box-tools">
-          <form  action="./level=1&type=member" method="post">
+          <form  action="./?level=1&type=member" method="post">
           <div class="input-group input-group-sm" style="width: 150px;">
               <input type="text" name="mb_search" class="form-control pull-right" placeholder="Search">
               <div class="input-group-btn">

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../../assets/css/main.css" />
   </head>
   <body >
-    <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
           <section id="banner">
@@ -59,7 +58,6 @@
           </div>
         </div>
       </div>
-    </div>
    <!-- Scripts -->
    <!-- jQuery 必須先比bootstrap 引入不然會出錯 -->
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>

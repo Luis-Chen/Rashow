@@ -104,8 +104,8 @@
 
 
         }
-        if (isset($_POST['checkbox'])) {
-          $check = $_POST['checkbox'];
+        if (isset($_POST['notpass'])) {
+          $check = $_POST['notpass'];
           var_dump($check);
           foreach ($check as $check) {
             $update = $connect -> prepare("UPDATE poster SET sta_pass= 0 WHERE id = :id");
@@ -115,13 +115,14 @@
       }
       //未通過頁面指令
       if ($view == true && $pass == false) {
-        if ($setPass ==1 ) {
+        if (isset($setPass)&&$setPass ==1 ) {
           $update = $connect -> prepare("UPDATE poster SET sta_pass = 1 WHERE id = :id");
           $update -> execute(array(':id' => $id ));
         }
         if (isset($_POST['checkbox'])) {
           $check = $_POST['checkbox'];
           var_dump($check);
+          $date = date("Y-m-d");
           foreach ($check as $check) {
             $update = $connect -> prepare("UPDATE poster SET sta_del = 1 WHERE id = :id");
             $update -> execute(array(':id' => $check ));

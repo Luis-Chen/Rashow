@@ -1,7 +1,7 @@
 
 <?php if ($_GET['level']==1): ?>
   <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="./?view=0&pass=0&level=1&type=poster">未審核頁面</a></li>
+  <li role="presentation"><a href="./?view=0&pass=0&level=1&type=poster">未審核頁面</a></li>
   <li role="presentation"><a href="./?view=0&pass=0&level=1&type=poster">未審核頁面</a></li>
   <li role="presentation"><a href="./?view=1&pass=1&level=1&type=poster">已通過頁面</a></li>
   <li role="presentation"><a href="./?view=1&pass=0&level=1&type=poster">未通過頁面</a></li>
