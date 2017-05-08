@@ -18,8 +18,8 @@
       <div class="form-control narrow">
         <label for="endDay">海報結束播放日期</label>
         <input type="date"  name="endDay" title="請輸入日期">
-        <input type="hidden" name="mbid" value="<?echo $_SESSION['member']['id'];?>">
-        <input type="hidden" name="toDay"value="<? echo date('Y-m-d');?>">
+        <input type="hidden" name="mbid" value="<?php echo $_SESSION['member']['id'];?>">
+        <input type="hidden" name="toDay"value="<?php echo date('Y-m-d');?>">
       </div>
       <ul class="actions">
         <li><input  type="button"  onclick="check()"  value="送出"></li>
