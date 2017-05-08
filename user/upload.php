@@ -4,7 +4,7 @@
     <header>
       <h2>上傳海報</h2>
     </header>
-    <form id="add" name = "add" class="grid-form" action="add.php?type=<?echo $_GET['type']?>" role="form"  method="post" enctype="multipart/form-data">
+    <form id="add" class="grid-form" action="add.php?type=<?php echo $_GET['type']?>" role="form"  method="post" enctype="multipart/form-data">
       <div class="form-control narrow ">
         <label for="name">使用者</label>
         <?php echo $_SESSION['member']['mail']; ?>
