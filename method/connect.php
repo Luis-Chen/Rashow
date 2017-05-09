@@ -1,7 +1,6 @@
 <?php
        ini_set("display_errors","On");
       date_default_timezone_set("Asia/Taipei");
-
      $link = array(
                               'host' => "10.128.108.12",
                                'port' => "3306",
@@ -9,7 +8,6 @@
                                'password' => "rashow",
                                'dbname' => "rashow"
                               );
-
       $dbconnect =  'mysql:host='.$link['host'].';port='.$link['port'].';dbname='.$link['dbname'];
 
       // try 判斷是否連上 否:顯示訊息

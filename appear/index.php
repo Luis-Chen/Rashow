@@ -1,55 +1,53 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap-theme.min.css">
-  </head>
-  <body>
+<HTML>
+<link rel=stylesheet type="text/css" href="./slide.css">
+<script type="text/javascript" src="./slide.js"></script>
+<script type="text/javascript">
+<!--  //隨機播放陣列中指定的圖檔
+        var jsImg = new Array("001.jpg","002.jpg","003.jpg","004.jpg","005.jpg");
+        //設定每兩秒執行一次randomImg() ，此行要在 function 之外
+        setInterval("randomImg()",2000);
+        function randomImg(){
+        //陣列的長度 * 介於0~1間數字 ，然後在取 floor 當照片索引值
+        var imgIndex = Math.floor(Math.random()*jsImg.length);
+        document.getElementById("my_div").innerHTML  = "<img src='"+jsImg[imgIndex]+"' width=100% height=100%>";
+        }
+-->
+</script>
+<script type="text/javascript">
+<!--  //循序播放陣列中指定的圖檔
+        var jsImg = new Array("001.jpg","002.jpg","003.jpg","004.jpg","005.jpg");
+        var jsImg_len = jsImg.length;  // 圖檔數量
+        // 要用另一個變數存，是不想在 function 中每次都要算陣列的大小
+        var i=2;                       //起始照片  2 為 003.jpg
+        //設定每兩秒執行一次sequentialImg() ，此行要在 function 之外
+        setInterval("sequentialImg()",2000);
+        function sequentialImg(){  //循序播放
+            document.getElementById("my_div").innerHTML  = "<img src='"+jsImg[i]+"' width=200 height=200>";
+                i++;
+                if(i>=jsImg_len)  i=0;
+        }
+-->
+</script>
+<body >
+<!-- <body onload="randomImg();">  -->
+<div id="my_div" >``
+  <div class="diy-slideshow">
+
     <?php
       require_once "../method/connect.php";
       $select  = $connect -> prepare("SELECT * FROM poster WHERE sta_pass = 1 AND endDay - toDay < 30  ORDER BY endDay");
       $select -> execute();
       $poster = $select -> fetchall(PDO::FETCH_ASSOC);
     ?>
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
+  	<figure class="show">
+      <?php foreach ($poster as $poster => $i): ?>
+        <img src="<? echo $poster[$i]['link'];?>" width="100%" />
+      <?php endforeach; ?>
+  	</figure>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="<? echo $poster['0']['link'];?>" alt="...">
-      </div>
-      <div class="item ">
-        <img src="<? echo $poster['1']['link'];?>" alt="...">
-      </div>
-      <div class="item ">
-        <img src="<? echo $poster['2']['link'];?>" alt="...">
-      </div>
+    <span class="prev">&laquo;</span>
+    <span class="next">&raquo;</span>
+
   </div>
-
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <!-- 依需要參考已編譯外掛版本（如下），或各自獨立的外掛版本 -->
-    
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-    <!-- bootstrap -->
-  </body>
-</html>
+</body>
+</HTML>
