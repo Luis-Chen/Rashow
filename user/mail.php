@@ -7,6 +7,7 @@
       <div class="form-control narrow">
         <label for="email">Email</label>
         <?php echo $_SESSION['member']['mail']?>
+        <input type="hidden" name="mbid" value="<?php echo $_SESSION['member']['id']?>">
       </div>
       <div class="form-control narrow">
         <label for="title">標題</label>
