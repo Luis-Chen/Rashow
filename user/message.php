@@ -12,9 +12,9 @@
     <tr>
       <td>標題<td>內容<td>日期
     <tr>
-       <td><?echo  $meg['title'] ?>
-       <td><?echo  $meg['text'];?>
-       <td><?echo  $meg['date'];?>
+       <td><?php echo  $meg['title'] ?>
+       <td><?php echo  $meg['text'];?>
+       <td><?php echo  $meg['date'];?>
     <?php endforeach; ?>
     </table>
   <?php endif; ?>

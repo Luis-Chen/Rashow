@@ -16,7 +16,7 @@
   <td><a href="<?php echo $result['link'];?>"><img src=" <?php echo $result['link'];?>" alt="" width="100px" height="100px"></a>
   <td><?php echo $result['toDay'];?>
   <td><?php echo $result['endDay'];?>
-    <?php if ($result['startplay'] == "0000-00-00"): ?>
+    <?php if ($result['startplay'] == null ): ?>
         <td>-
         <td>-
       <?php else: ?>
