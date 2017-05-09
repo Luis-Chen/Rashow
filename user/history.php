@@ -12,10 +12,10 @@
 <tr>
  <td>編號<td>海報<td>上傳日期<td>結束日期<td>開始播放時間<td>剩餘時間<td>狀態
 <tr>
-  <td><?echo $result['id'];?>
-  <td><a href="<?echo $result['link'];?>"><img src=" <?echo $result['link'];?>" alt="" width="100px" height="100px"></a>
-  <td><?echo $result['toDay'];?>
-  <td><?echo $result['endDay'];?>
+  <td><?php echo $result['id'];?>
+  <td><a href="<?php echo $result['link'];?>"><img src=" <?php echo $result['link'];?>" alt="" width="100px" height="100px"></a>
+  <td><?php echo $result['toDay'];?>
+  <td><?php echo $result['endDay'];?>
     <?php if ($result['startplay'] == "0000-00-00"): ?>
         <td>-
         <td>-
