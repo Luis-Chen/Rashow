@@ -46,7 +46,7 @@
                                           'text'    => $_POST['text'],
                                           'mbid' =>$_POST['mbid'],
                                           'mail'   =>$_POST['mail'],
-                                          'toDay' => $_POST['toDay']
+                                          'toDay' => date('Y-m-d')
                               );
       require_once('../method/phpmailer/PHPMailerAutoload.php');
 
