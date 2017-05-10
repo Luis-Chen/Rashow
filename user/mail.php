@@ -6,8 +6,8 @@
     <form class="grid-form" method="post" action="add.php?type=<?php echo $_GET['type']?>" id="form">
       <div class="form-control narrow">
         <label for="email">Email</label>
-        <?php echo $_SESSION['member']['mail']?>
-        <input type="hidden" name="mbid" value="<?php echo $_SESSION['member']['id']?>">
+        <?php echo $_SESSION['member']['mail'];?>
+        <input type="hidden" name="mbid" value="<?php echo $_SESSION['member']['id'];?>">
       </div>
       <div class="form-control narrow">
         <label for="title">標題</label>

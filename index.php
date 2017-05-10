@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Typify by TEMPLATED</title>
+		<title>Rashow</title>
 		<meta charset="utf-8" />
 		<!-- 定時登出 -->
 		<meta http-equiv="refresh" content="600;url = ../method/logout.php">
