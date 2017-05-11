@@ -7,6 +7,7 @@
   <li role="presentation"><a href="./?view=1&pass=0&level=1&type=poster">未通過頁面</a></li>
   <li role="presentation"><a href="./?view=1&play=1&level=1&type=poster">播放監控</a></li>
   <li role="presentation"><a href="./?level=1&type=member">會員管理</a></li>
+  <li role="presentation"><a href="./?level=1&type=message">訊息顯示</a></li>
   <li role="presentation"><a href="../method/logout.php">登出</a></li>
 </ul>
 <?php elseif($_GET['level']==0): ?>
