@@ -47,6 +47,10 @@
                     case 'member':
                           require_once "member.php"; //會員
                       break;
+
+                    case 'message':
+                          require_once "message.php"; //會員
+                      break;
                   }
                 }else {
                   require_once "../method/logut.php";

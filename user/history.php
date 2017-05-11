@@ -21,7 +21,7 @@
         <td>-
       <?php else: ?>
         <td><?php echo $result['startplay']; ?>
-        <td><?php echo round((strtotime($result['endDay'])-strtotime($result['startplay']))/3600/24)."天"; ?>
+        <td><?php echo round((strtotime($result['endDay'])-strtotime(date("Y-m-d")))/3600/24)."天"; ?>
     <?php endif; ?>
   <td>
     <?php if ($result['sta_view']==false): ?>
