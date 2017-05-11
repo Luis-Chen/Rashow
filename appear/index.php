@@ -100,21 +100,7 @@
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <!-- 循環播放 -->
-    <script type="text/javascript">
-    <!--  //循序播放陣列中指定的圖檔
-            var jsImg = [<?php echo '"'.implode('","', $playlist).'"' ?>];
-            var jsImg_len = jsImg.length;  // 圖檔數量
-            // 要用另一個變數存，是不想在 function 中每次都要算陣列的大小
-            var i= 2;                       //起始照片  2 為 003.jpg
-            //設定每兩秒執行一次sequentialImg() ，此行要在 function 之外
-            setInterval("sequentialImg()",5000);
-            function sequentialImg(){  //循序播放
-                document.getElementById("my_div").innerHTML  = "<img src='"+jsImg[i]+"' >";
-                    i++;
-                    if(i>=jsImg_len)  i=0;
-            }
-    -->
-    </script>
+
    <!-- 循環播放 -->
     <script type="text/javascript">
       var counter = 0, // 追蹤當前幻燈片
