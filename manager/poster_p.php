@@ -22,10 +22,10 @@
             <td><?php echo $poster['toDay']; ?>
             <td><?php echo $poster['endDay']; ?>
             <td><?php echo $poster['startplay']; ?>
-            <td>剩<?php echo round((strtotime($poster['endDay'])-strtotime($poster['startplay']))/3600/24)."天"; ?>
+            <td>剩<?php echo round((strtotime($poster['endDay'])-strtotime(date("Y-m-d")))/3600/24)."天"; ?>
             <td><h4>播放中</h4>
             <td>
-                <input type="checkbox" name="takeoff[]" value="<?echo $poster['id']?>">下架
+                <input type="checkbox" name="takeoff[]" value="<?php echo $poster['id']?>">下架
       <?php endforeach; ?>
     </table>
       <input type="submit" name="" value="送出">

@@ -23,8 +23,8 @@
             <td><?php echo $poster['endDay']; ?>
             <td><h4>未審核</h4>
             <td>
-                <input type="checkbox" name="pass[]" value="<?echo $poster['id']?>">通過
-                <input type="checkbox" name="notpass[]" value="<?echo $poster['id']?>">未通過
+                <input type="checkbox" name="pass[]" value="<?php echo $poster['id']?>">通過
+                <input type="checkbox" name="notpass[]" value="<?php echo $poster['id']?>">未通過
       <?php endforeach; ?>
     </table>
       <input type="submit" name="" value="送出">

@@ -26,9 +26,9 @@
             <td><?php echo $poster['endDay']; ?>
             <td><h4>已通過</h4>
             <td>
-              <input type="checkbox" name="play[]" value="<?echo $poster['id']?>">
+              <input type="checkbox" name="play[]" value="<?php echo $poster['id']?>">
             <td>
-              <input type="checkbox" name="notpass[]" value="<?echo $poster['id']?>">
+              <input type="checkbox" name="notpass[]" value="<?php echo $poster['id']?>">
       <?php endforeach; ?>
     </table>
     <input type="submit" name="" value="送出">
