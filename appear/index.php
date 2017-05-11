@@ -87,11 +87,11 @@
     <div id="my_div" >
       <div class="diy-slideshow">
          <figure class="show">
-           <img src="<? echo $poster[4]['link'];?>" width="100%" />
+           <img src="<?php echo $poster[4]['link'];?>" width="100%" />
         </figure>
         <?php foreach ($poster as $key => $i) : ?>
           <figure>
-            <img src="<? echo $poster[$key]['link'];?>" width="100%" />
+            <img src="<?php echo $poster[$key]['link'];?>" width="100%" />
           </figure>
         <?php endforeach; ?>
         <span class="prev">&laquo;</span>
