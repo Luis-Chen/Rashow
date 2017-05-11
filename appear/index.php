@@ -20,8 +20,9 @@
     <body>
       <?php
         require_once "../method/connect.php";
-        $select  = $connect -> prepare("SELECT * FROM poster WHERE sta_pass = 1 AND endDay - toDay < 30  ORDER BY endDay limit 5");
-        $select -> execute();
+        $select  = $connect -> prepare("SELECT * FROM poster WHERE sta_pass = 1 AND endDay - :today < 30  ORDER BY endDay limit 5");
+        $select -> execute(array(':today' => date("Y-m-d")));
+        
         $poster = $select -> fetchall(PDO::FETCH_ASSOC);
         $playlist = array();
         foreach ($poster as $key => $i) {

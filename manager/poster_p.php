@@ -10,7 +10,7 @@
   <form class="" action="setting.php?view=1&play=1" method="post">
     <table class="table">
       <tr>
-          <td>編號<td>會員編號<td>海報<td>上傳日期<td>結束日期<td>開始播放時間<td>結束播放時間<td>狀態<td>下架
+          <td>編號<td>會員編號<td>海報<td>上傳日期<td>開始播放時間<td>結束日期<td>剩餘播放時間<td>狀態<td>下架
       <?php foreach ($poster as $poster ): ?>
           <tr>
             <td><?php echo $poster['id'] ?>
@@ -20,8 +20,8 @@
                 <img src="<?php echo $poster['link']; ?>" alt="" height = "50px" width = "50px">
               </a>
             <td><?php echo $poster['toDay']; ?>
-            <td><?php echo $poster['endDay']; ?>
             <td><?php echo $poster['startplay']; ?>
+            <td><?php echo $poster['endDay']; ?>
             <td>剩<?php echo round((strtotime($poster['endDay'])-strtotime(date("Y-m-d")))/3600/24)."天"; ?>
             <td><h4>播放中</h4>
             <td>
