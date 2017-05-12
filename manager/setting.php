@@ -36,15 +36,15 @@
         }
       //已通過頁面指令
       if ($view == true && $pass == true){
-        if (isset($_POST['play'])) {
-          $play = $_POST['play'];
+        if (isset($_POST['playon'])) {
+          $play = $_POST['playon'];
           $date = date("Y-m-d");
           var_dump($play);
 
           foreach ($play as $play) {
 
-            $update = $connect -> prepare("UPDATE poster SET sta_play = 1 ,startplay = :d WHERE id = :id");
-            $update -> execute(array(':id' => $play,':d' => $date ));
+            $update = $connect -> prepare("UPDATE poster SET sta_play = 1 , startplay = :d WHERE id = :id");
+            $update -> execute(array(':d' => $date ,':id' => $play));
 
             $member = $connect -> prepare("SELECT mail FROM member WHERE :id ");
             $member -> execute(array(':id' => $_POST['member'] ));
@@ -101,8 +101,6 @@
             }
             echo "<b>發信成功!!</b>";
             }
-
-
         }
         if (isset($_POST['notpass'])) {
           $check = $_POST['notpass'];
@@ -116,7 +114,7 @@
       //未通過頁面指令
       if ($view == true && $pass == false) {
         if (isset($setPass)&&$setPass ==1 ) {
-          $update = $connect -> prepare("UPDATE poster SET sta_pass = 1 WHERE id = :id");
+          $update = $connect -> prepare("UPDATE poster SET sta_pass = 1 , sta_play = 0 WHERE id = :id");
           $update -> execute(array(':id' => $id ));
         }
         if (isset($_POST['checkbox'])) {
@@ -191,7 +189,7 @@
           $check = $_POST['takeoff'];
           var_dump($check);
           foreach ($check as $check) {
-            $update = $connect -> prepare("UPDATE poster SET sta_play = 0 AND sta_pass = 0  WHERE id = :id");
+            $update = $connect -> prepare("UPDATE poster SET sta_play = 0 , sta_pass = 0  WHERE id = :id");
             $update -> execute(array(':id' => $check ));
           }
         }

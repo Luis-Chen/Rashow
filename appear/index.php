@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap 101 Template</title>
+        <title>播放頁面</title>
         <!-- Bootstrap -->
         <!-- 最新編譯和最佳化的 CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -22,7 +22,7 @@
         require_once "../method/connect.php";
         $select  = $connect -> prepare("SELECT * FROM poster WHERE sta_pass = 1 AND endDay - :today < 30  ORDER BY endDay limit 5");
         $select -> execute(array(':today' => date("Y-m-d")));
-        
+
         $poster = $select -> fetchall(PDO::FETCH_ASSOC);
         $playlist = array();
         foreach ($poster as $key => $i) {
@@ -34,7 +34,7 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
           <div class="item active">
-              <img src="<?php echo $poster['4']['link'];?>" width="100%" />
+              <img src="../img/index.png" width="100%" />
           </div>
           <?php foreach ($poster as $key => $i) : ?>
             <div class="item">

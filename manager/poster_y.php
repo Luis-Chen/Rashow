@@ -1,7 +1,7 @@
 <?php
   require_once "../method/connect.php";
 
-    $select = $connect -> prepare("SELECT * FROM poster WHERE sta_pass = 1 ");
+    $select = $connect -> prepare("SELECT * FROM poster WHERE sta_pass = 1 AND sta_play = 0 ");
     // $select -> bindParam(':startPage', intval($startPage));
     // $select -> bindParam(':per', intval($per));
     $select -> execute();
@@ -26,7 +26,7 @@
             <td><?php echo $poster['endDay']; ?>
             <td><h4>已通過</h4>
             <td>
-              <input type="checkbox" name="play[]" value="<?php echo $poster['id']?>">
+              <input type="checkbox" name="playon[]" value="<?php echo $poster['id']?>">
             <td>
               <input type="checkbox" name="notpass[]" value="<?php echo $poster['id']?>">
       <?php endforeach; ?>
