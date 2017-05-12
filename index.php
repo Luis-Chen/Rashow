@@ -7,6 +7,7 @@
 <html>
 	<head>
 		<title>Rashow</title>
+		<meta name="google-site-verification" content="0sjFdVZVp-AFANqQOBjgoe1ZsLVYxNzGIRpawfbagj4" />
 		<meta charset="utf-8" />
 		<!-- 定時登出 -->
 		<meta http-equiv="refresh" content="600;url = ../method/logout.php">
