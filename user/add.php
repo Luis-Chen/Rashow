@@ -42,8 +42,8 @@
           echo"fileErrorCode:".$_FILES["picture"]["error"];
       }
     }elseif( $_GET['type'] =='mail') {
-      $userInfo = array('title'   => $_POST['title'],
-                                          'text'    => $_POST['text'],
+      $userInfo = array('title'   =>strip_tags($_POST['title']) ,
+                                          'text'    =>strip_tags( $_POST['text']),
                                           'mbid' =>$_POST['mbid'],
                                           'mail'   =>$_POST['mail'],
                                           'toDay' => date('Y-m-d')
