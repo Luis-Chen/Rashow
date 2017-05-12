@@ -97,7 +97,7 @@
           $insert -> bindValue(':id' , $userInfo['mbid'] , PDO::PARAM_STR);
           $insert -> bindValue(':title' , $userInfo['title'] , PDO::PARAM_STR);
           $insert -> bindValue(':txt' , $userInfo['text'] , PDO::PARAM_STR);
-          $insert -> bindValue(':da' , $userInfo['toDay']) , PDO::PARAM_STR);
+          $insert -> bindValue(':da' , $userInfo['toDay'] , PDO::PARAM_STR);
           $insert -> execute();
           echo "<b>發信成功!!</b>";
 
