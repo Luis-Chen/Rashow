@@ -61,9 +61,9 @@
             $mail->Host = "smtp.gmail.com"; //Gamil的SMTP主機
             $mail->Port = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
             $mail->CharSet = "utf-8"; //郵件編碼
-            $mail->Username ="leo5916267@gmail.com"; //Gamil帳號
-            $mail->Password = "ji32k7Gmail"; //Gmail密碼
-            $mail->From = "leo5916267@gmail.com"; //寄件者信箱
+            $mail->Username ="f74373021@mailst.cjcu.edu.tw"; //Gamil帳號
+            $mail->Password = "asd123456"; //Gmail密碼
+            $mail->From = "f74373021@mailst.cjcu.edu.tw"; //寄件者信箱
             $mail->FromName = "Rashow管理員"; //寄件者姓名
 
             $mail->Body ="
@@ -140,9 +140,9 @@
             $mail->Host = "smtp.gmail.com"; //Gamil的SMTP主機
             $mail->Port = 465; //Gamil的SMTP主機的埠號(Gmail為465)。
             $mail->CharSet = "utf-8"; //郵件編碼
-            $mail->Username ="leo5916267@gmail.com"; //Gamil帳號
-            $mail->Password = "ji32k7Gmail"; //Gmail密碼
-            $mail->From = "leo5916267@gmail.com"; //寄件者信箱
+            $mail->Username ="f74373021@mailst.cjcu.edu.tw"; //Gamil帳號
+            $mail->Password = "asd123456"; //Gmail密碼
+            $mail->From = "f74373021@mailst.cjcu.edu.tw"; //寄件者信箱
             $mail->FromName = "Rashow管理員"; //寄件者姓名
 
             $mail->Body ="
