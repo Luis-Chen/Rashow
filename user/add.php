@@ -44,7 +44,7 @@
     }elseif( $_GET['type'] =='mail') {
 
       $userInfo = array('title'   => preg_replace("/[\'\"]+/" , '' ,$_POST['title']) ,
-                                          'text'    => preg_replace("/[\'\"]+/" , '' ,$_POST['text']),
+                                          'text'    => htmlspecialchars(preg_replace("/[\'\"]+/" , '' ,$_POST['text'])),
                                           'mbid' =>$_POST['mbid'],
                                           'mail'   =>$_POST['mail'],
                                           'toDay' => date('Y-m-d')

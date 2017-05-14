@@ -32,6 +32,8 @@
       <h6>未通過</h6>
     <?php elseif ($result['sta_play']==true): ?>
       <h6>播放中</h6>
+    <?php elseif ($result['sta_del']==true): ?>
+      <h6>已刪除</h6>
     <?php endif; ?>
  <?php endforeach; ?>
 </table>
