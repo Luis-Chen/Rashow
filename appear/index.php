@@ -3,6 +3,7 @@
    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="refresh" content="6000">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>播放頁面</title>
         <!-- Bootstrap -->
@@ -18,14 +19,7 @@
     <![endif]-->
     </head>
     <body id="content">
-      <script type="text/javascript">
-        $(document).ready(function () {
-          function reload() {
-            $("#content").load("index.php");
-          }
-          setTimeOut(reload(),10000);
-        });
-      </script>
+
       <?php
         require_once "../method/connect.php";
 
