@@ -23,7 +23,7 @@
           function reload() {
             $("#content").load("notification.php");
           }
-          setTimeOut(reload,10000;
+          setTimeOut(reload,10000);
         });
       </script>
       <?php
