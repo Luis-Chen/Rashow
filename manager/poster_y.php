@@ -19,7 +19,7 @@
             <td><?php echo $poster['mbid']; ?>
               <input type="hidden" name="member" value="<?php echo $poster['mbid']; ?>">
             <td>
-              <a href=<?php echo $poster['link']; ?>>
+              <a target="_blank" href=<?php echo $poster['link']; ?>>
                 <img src="<?php echo $poster['link']; ?>" alt="" height = "50px" width = "50px">
               </a>
             <td><?php echo $poster['toDay']; ?>

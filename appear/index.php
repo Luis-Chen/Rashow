@@ -17,17 +17,23 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     </head>
-    <body>
+    <body id="content">
+      <script type="text/javascript">
+        setInterval(function() {
+          $("#content").load(location.href+" #content>*","");
+        }, 5000);
+      </script>
       <?php
         require_once "../method/connect.php";
-        $select  = $connect -> prepare("SELECT * FROM poster WHERE sta_pass = 1 AND endDay - :today < 30  ORDER BY endDay limit 5");
-        $select -> execute(array(':today' => date("Y-m-d")));
 
-        $poster = $select -> fetchall(PDO::FETCH_ASSOC);
-        $playlist = array();
-        foreach ($poster as $key => $i) {
-          $playlist[$key] = $poster[$key]['link'];
-        }
+          $select  = $connect -> prepare("SELECT * FROM poster WHERE sta_pass = 1 AND endDay - :today < 30  ORDER BY endDay limit 5");
+          $select -> execute(array(':today' => date("Y-m-d")));
+
+          $poster = $select -> fetchall(PDO::FETCH_ASSOC);
+          $playlist = array();
+          foreach ($poster as $key => $i) {
+            $playlist[$key] = $poster[$key]['link'];
+          }
       ?>
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
