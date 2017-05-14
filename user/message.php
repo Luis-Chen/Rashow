@@ -12,8 +12,8 @@
     <tr>
       <td>標題<td>內容<td>日期
     <tr>
-       <td><?php echo  $meg['title'] ?>
-       <td><?php echo  $meg['text'];?>
+       <td><?php echo  htmlspecialchars($meg['title']) ?>
+       <td><?php echo   htmlspecialchars($meg['text']);?>
        <td><?php echo  $meg['date'];?>
     <?php endforeach; ?>
     </table>
