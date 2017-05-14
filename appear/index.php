@@ -36,7 +36,7 @@
           $playlist = array();
           foreach ($poster as $key => $i) {
             $playlist[$key] = $poster[$key]['link'];
-
+          }
       ?>
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
