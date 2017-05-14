@@ -21,7 +21,7 @@
       <script type="text/javascript">
         $(document).ready(function () {
           function reload() {
-            $("#content").load("notification.php");
+            $("#content").load("index.php");
           }
           setTimeOut(reload(),10000);
         });
