@@ -3,7 +3,6 @@
    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta http-equiv="refresh" content="5">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>播放頁面</title>
         <!-- Bootstrap -->
@@ -18,7 +17,15 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     </head>
-    <body>
+    <body id="content">
+      <script type="text/javascript">
+        $(document).ready(function () {
+          function reload() {
+            $("#content").load("notification.php");
+          }
+          setTimeOut(reload,10000;
+        });
+      </script>
       <?php
         require_once "../method/connect.php";
 
@@ -29,7 +36,7 @@
           $playlist = array();
           foreach ($poster as $key => $i) {
             $playlist[$key] = $poster[$key]['link'];
-          }
+
       ?>
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
